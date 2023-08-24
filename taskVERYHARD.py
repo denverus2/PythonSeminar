@@ -14,8 +14,6 @@
 def seekMaxSequence(arr):
     maxSeq = 0
     curSeq = 0
-    curSeqMin = min
-    
     for i in range(min(arr), max(arr)+1):
         curSeq += 1
         if (i in arr and i + 1 in arr):
