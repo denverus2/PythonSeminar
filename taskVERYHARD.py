@@ -12,19 +12,11 @@
 
 
 def seekMaxSequence(arr):
-    min = arr[0]
-    max = arr[0]
     maxSeq = 0
     curSeq = 0
-
-    for n in arr:
-        if n < min:
-            min = n
-        if n > max:
-            max = n
-
     curSeqMin = min
-    for i in range(min, max+1):
+    
+    for i in range(min(arr), max(arr)+1):
         curSeq += 1
         if (i in arr and i + 1 in arr):
             if curSeq == 1:
