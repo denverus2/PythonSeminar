@@ -44,10 +44,10 @@ def multi_dick_to_str(lib):
   string = ""
   for i in lib:
     if i>0:
-      if lib[i]>0:
+      if lib[i]>1:
         string=string+f' + {str(abs(lib[i]))}x^{str(i)}'
-        if lib[i]==1:
-          string=string+f' + {str(abs(lib[i]))}x'
+      elif lib[i]==1:
+        string=string+f' + {str(abs(lib[i]))}x'
       elif lib[i]==0:
         string=string+f''
       elif lib[i]<0:
@@ -62,6 +62,7 @@ def multi_dick_to_str(lib):
   if string.startswith(" + "):
     string = string[3:]
   string= string.replace("1x","x")
+  string= string.replace("^1","")
   return string + " = 0"
 
 
