@@ -45,13 +45,13 @@ def multi_dick_to_str(lib):
   for i in lib:
     if i>0:
       if lib[i]>0:
-          string=string+f' + {str(abs(lib[i]))}x^{str(i)}'
-      if lib[i]==1:
+        string=string+f' + {str(abs(lib[i]))}x^{str(i)}'
+        if lib[i]==1:
           string=string+f' + {str(abs(lib[i]))}x'
       elif lib[i]==0:
-          string=string+f''
-      if lib[i]<0:
-          string=string+f' - {str(abs(lib[i]))}x^{str(i)}'
+        string=string+f''
+      elif lib[i]<0:
+        string=string+f' - {str(abs(lib[i]))}x^{str(i)}'
     else:
       if lib[i]>0:
         string=string+f' + {str(abs(lib[i]))}'
