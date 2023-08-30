@@ -19,7 +19,7 @@ def seekMaxSequence(arr):
         if (i in arr and i + 1 in arr):
             if curSeq == 1:
                 curSeqMin = i
-            curSeq = curSeq + 1
+            curSeq += 1
         else:
             if curSeq > 1 and curSeq > maxSeq:
                 maxSeq = curSeq
