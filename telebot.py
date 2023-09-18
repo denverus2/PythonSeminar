@@ -15,6 +15,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS films
 conn.commit()
 
 async def add_film(update, context):
+    
     title = context.args[0]
     year = context.args[1]
     director = context.args[2]
@@ -24,22 +25,22 @@ async def add_film(update, context):
     conn.commit()
     await update.message.reply_text('Фильм успешно добавлен в вашу фильмотеку!')
 
-# def delete_film(update, context):
-#     chat_id = update.message.chat_id
-#     title = ' '.join(context.args)
-#     cursor.execute("DELETE FROM films WHERE title=?", (title,))
-#     conn.commit()
-#     update.message.reply_text('Фильм успешно удален из вашей фильмотеки!')
+async def delete_film(update, context):
+    chat_id = update.message.chat_id
+    title = ' '.join(context.args)
+    cursor.execute("DELETE FROM films WHERE title=?", (title,))
+    conn.commit()
+    await update.message.reply_text('Фильм успешно удален из вашей фильмотеки!')
 
 
-# def edit_film(update, context):
-#     chat_id = update.message.chat_id
-#     title = context.args[0]
-#     field = context.args[1]
-#     value = ' '.join(context.args[2:])
-#     cursor.execute(f"UPDATE films SET {field}=? WHERE title=?", (value, title))
-#     conn.commit()
-#     update.message.reply_text('Информация о фильме успешно обновлена!')
+async def edit_film(update, context):
+    chat_id = update.message.chat_id
+    title = context.args[0]
+    field = context.args[1]
+    value = ' '.join(context.args[2:])
+    cursor.execute(f"UPDATE films SET {field}=? WHERE title=?", (value, title))
+    conn.commit()
+    await update.message.reply_text('Информация о фильме успешно обновлена!')
 
 
 async def help (update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -75,9 +76,9 @@ app = ApplicationBuilder().token("556541562:AAEHH95VNPvvc-S0HP_uWNyqkHZmumFZsro"
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("help", help))
 app.add_handler(CommandHandler("addfilm", add_film))
-# app.add_handler(CommandHandler("deletefilm", handle_message))
+app.add_handler(CommandHandler("deletefilm", delete_film))
 app.add_handler(CommandHandler('viewfilms', view_films))
-# app.add_handler(CommandHandler("editfilm", handle_message))
+app.add_handler(CommandHandler("editfilm", edit_film))
 app.add_handler(MessageHandler(filters.COMMAND, unknown))
 
 app.run_polling()
