@@ -70,12 +70,12 @@ async def unknown(update, context):
 
 
 app = ApplicationBuilder().token("556541562:AAEHH95VNPvvc-S0HP_uWNyqkHZmumFZsro").build()
-app.add_handler(CommandHandler("start", start))
-app.add_handler(CommandHandler("help", help))
+app.add_handler(CommandHandler("start", start))  #complit
+app.add_handler(CommandHandler("help", help))#complit
 app.add_handler(CommandHandler("addfilm", add_film))
 app.add_handler(CommandHandler("deletefilm", delete_film))
-app.add_handler(CommandHandler('viewfilms', view_films))
+app.add_handler(CommandHandler('viewfilms', view_films))#complit
 app.add_handler(CommandHandler("editfilm", edit_film))
-app.add_handler(MessageHandler(filters.COMMAND, unknown))
+app.add_handler(MessageHandler(filters.COMMAND, unknown))#complit
 
 app.run_polling()
