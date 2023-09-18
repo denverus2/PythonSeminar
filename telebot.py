@@ -26,7 +26,6 @@ async def add_film(update, context):
     await update.message.reply_text('Фильм успешно добавлен в вашу фильмотеку!')
 
 async def delete_film(update, context):
-    chat_id = update.message.chat_id
     title = ' '.join(context.args)
     cursor.execute("DELETE FROM films WHERE title=?", (title,))
     conn.commit()
@@ -34,7 +33,6 @@ async def delete_film(update, context):
 
 
 async def edit_film(update, context):
-    chat_id = update.message.chat_id
     title = context.args[0]
     field = context.args[1]
     value = ' '.join(context.args[2:])
@@ -52,7 +50,6 @@ async def help (update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(message)
     
 async def view_films(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    chat_id = update.message.chat_id
     cursor.execute("SELECT * FROM films")
     films = cursor.fetchall()
     if len(films) == 0:
